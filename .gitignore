@@ -6,4 +6,4 @@ src/__pycache__/
 src/config.py
 src/mapping.py
 src/plexora.log
-src/model/__pycache__
+src/model/__pycache__/
