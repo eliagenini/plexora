@@ -1,0 +1,169 @@
+__author__ = 'eliagenini'
+
+config = {
+
+    "providers": {
+        "Swisscom Full": {
+            "active": True,
+            "url": "https://raw.githubusercontent.com/iptv-ch/iptv-ch.github.io/master/swisscom-full.m3u",
+
+            "filters": {
+                "number": {
+                    "include": [
+                        "403",# RSI La 1 HD
+                        "405",# RSI La 2 HD
+                        "411",# teleticino HD
+                        "385",# Rai 1 HD
+                        "387",# Rai 2 HD
+                        "389",# Rai 3 HD
+                        "390",# Rai 4
+                        "391",# Rai 5
+                        "376",# Italia 1 HD
+                        "377",# Italia 2
+                        "380",# Rete 4
+                        "372",# Canale 5 HD
+                        "379",# La 5
+                        "378",# iris
+                        "352",# cielo
+                        "367",# La7 HD
+                        "368",# La7D
+                        "355"# DMAX
+                    ],
+                    "exclude": []
+                },
+            },
+        },
+
+        "LuckyStream": {
+            "active": True,
+            #"url": "http://tele-live.dnsup.net:23000/get.php?username=eofapvgz&password=e6p6yH06mT&type=m3u_plus&output=mpegts",
+            "url": "file:./lucky.m3u",
+
+            "filters": {
+                "name": {
+                    "include": [
+                        "Full HD",
+                        "FULL HD",
+                        "Full-HD",
+                        "Top Crime",
+                        "Mediaset Extra",
+                        "Canale 20",
+                        "Giallo",
+                        "Paramount Channel",
+                        "Primafila",
+                        "Prima Fila",
+                        "Premium Investigation Discovery",
+                        "MySports",
+                        "Dazn Sport",
+                        "Eleven Sports",
+                        "LEGA PRO",
+                        "Animal Planet",
+                        "Classica HD",
+                        "Focus Mediaset",
+                        "[SOCCER] CH: ",
+                        "[DE2]Sky Sport",
+                        "[DE2]Sky Bundesliga",
+                        "[ FR ] beIN SPORTS",
+                        "[ NL ] FOX SPORTS",
+                        "[ UK ] BEIN SPORT",
+                        "[ UK ] BT Sport ",
+                        "[ UK ] Sky Sport ",
+                        "[ UK ] SKY Sport ",
+                        "[ UK ] SKY SPORTS",
+                        "[ UK ] Sky Sports"
+                        # "Rai 1 Full HD",
+                        # "Rai 2 Full HD",
+                        # "Rai 3 Full HD",
+                        # "Rai 4 Full HD",
+                        # "Rai 5 Full HD",
+                        # "Rai Premium Full HD",
+                        # "Rai Movie Full HD",
+                        # "Rete 4 Full HD",
+                        # "Canale 5 Full HD",
+                        # "Italia 1 Full HD",
+                        # "Italia 2",
+                        # "La 5",
+                        # "Cine Sony",
+                        # "Top Crime",
+                        # "Mediaset Extra",
+                    ],
+                    "exclude": [
+                        "---[",
+                        "--- [",
+                        "HD +1",
+                        "[ DE ]",
+                        "VETRINA",
+                        "[ ch ] teleclub sport 2",
+                        "[ ch ] teleclub sport 3",
+                        "[soccer] pl: eleven sports 1",
+                        "[soccer] pl: eleven sports 2",
+                        "[soccer] pl: eleven sports 3"
+                    ]
+                },
+                "group": {
+                    "sky cinema",
+                    "premium cinema",
+                    "primafila",
+                    "intrattenimento sky",
+                    "intrattenimento premium",
+                    "sport",
+                    "sky sport",
+                    "sky calcio",
+                    "dazn sport",
+                    "lpc lega pro calcio",
+                    "cultura",
+                    "svizzera",
+                    "germania",
+                    "francia",
+                    "olanda",
+                    "regno unito",
+                    "calcio estero ( solo stranieri )"
+                },
+            }
+        }
+    },
+
+    "regex": {
+        "m3u": '(.+?),(.+)\s*(.+)\s*',
+        "name": '.*?tvg-name=[\'"](.*?)[\'"]',
+        "group": '.*?group-title=[\'"](.*?)[\'"]',
+        "logo": '.*?tvg-logo=[\'"](.*?)[\'"]',
+        "lang": '.*?tvg-language=[\'"](.*?)[\'"]',
+        "country": '.*?tvg-country=[\'"](.*?)[\'"]',
+        "id": '.*?tvg-id=[\'"](.*?)[\'"]',
+        "number": '.*?tvg-chno=[\'"](.*?)[\'"]'
+    },
+
+    "proxy": {
+        "active": True,
+
+        "hostname": "192.168.1.3",
+        "port": "9983"
+      },
+
+    "bad": [
+        "Full HD",
+        "HD",
+        "MEDIASET",
+        "[-it-/-fr-]"
+    ],
+
+    "epg": {
+        "execute": True,
+        "cmd": "/home/elge/.wg++/run.sh",
+        "filename": "config.xml",
+        "destination": "guide.xml",
+        "days": 3
+    },
+
+    "playlist": {
+        "filename": "playlist.m3u"
+    },
+
+    "log": {
+        'filename': "plexora.log",
+        'level': 20,# CRITICAL/FATAL = 50, ERROR = 40, WARN/WARNING = 30, INFO = 20, DEBUG = 10
+        'maxBytes': 500*1024,
+        'backupCount': 5
+    }
+}

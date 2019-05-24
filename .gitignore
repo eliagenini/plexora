@@ -1,0 +1,9 @@
+.idea/
+venv/
+config.xml
+playlist.m3u
+src/__pycache__/
+src/config.py
+src/mapping.py
+src/plexora.log
+src/model/__pycache__
