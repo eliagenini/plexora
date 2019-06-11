@@ -153,7 +153,7 @@ def process(data, provider, proxy):
             country=parse(country_regex, info),
             group=parse(group_regex, info),
             lang=parse(lang_regex, info),
-            number=parse(number_regex, info)
+            number=parse(number_regex, info),
         )
 
         if filter(filters, channel):
@@ -179,6 +179,7 @@ def process(data, provider, proxy):
 
                     channel.id = c.get("id") # identifier for epg mapping
                     channel.name = c.get("name") # display name
+                    channel.group = c.get("group") # group
 
                     if c.get("number") is not None and c.get("number") != "":
                         channel.number = c.get("number") # order by?
@@ -371,7 +372,8 @@ def write_playlist(playlist):
         "logo": "tvg-logo",
         "country": "tvg-country",
         "lang": "tvg-language",
-        "number": "tvg-chno"
+        "number": "tvg-chno",
+        "group": "group-title"
     }
 
     body = "#EXTM3U\n"
