@@ -1,6 +1,7 @@
 __author__ = 'eliagenini'
 
-import urllib.request as urllib
+import http.client
+import json
 import sys
 
 try:
@@ -9,17 +10,20 @@ except ImportError:
     print('Can\'t find any config.py!')
     sys.exit(-1)
 
-
 hostname = config.config["plex"].get("hostname") + ':' + config.config["plex"].get("port")
 token = config.config["plex"].get("token")
 tuner = config.config["plex"].get("tuner")
 
-URL = hostname + "/livetv/dvrs/" + tuner + "/reloadGuide"
+conn = http.client.HTTPSConnection(host=hostname)
 
-request = urllib.Request(URL, data={'X-Plex-Token': token})
-response = urllib.urlopen(request)
+payload = json.dumps({'X-Plex-Token': token})
 
-if response.status_code == 200:
+conn.request(method="POST", url="/livetv/dvrs/" + tuner + "/reloadGuide", body=payload)
+
+res = conn.getresponse()
+data = res.read()
+
+if res.status == 200:
     print(" Refreshing EPG")
 else:
-    print(" Error Returned : " + str(response.status_code))
+    print(" Error ")
